@@ -45,6 +45,10 @@ const list: Array<CardProps> = [
         desc: "Full Body Art ready to rig for Streaming/Recording as Vtuber",
         price: "150",
         images: [
+           {
+            url:
+              "https://cdn.discordapp.com/attachments/684813872363995156/815319595173806110/daxlian.png",
+          },
           {
             url:
               "https://cdn.discordapp.com/attachments/353348612501012481/806991535887351808/SnowModel.png",
@@ -98,6 +102,7 @@ const list: Array<CardProps> = [
             url:
               "https://cdn.discordapp.com/attachments/684813872363995156/806964513597292564/artia2.png",
           },
+         
         ],
       },
       {
