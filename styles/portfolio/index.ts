@@ -16,6 +16,37 @@ export const Header = styled.div`
   z-index: 3;
 `;
 
+export const SelectContainer = styled.div`
+  position: relative;
+  width: 200px;
+  .icon {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-45%);
+    /* left: 0; */
+    z-index: 3;
+    pointer-events: none;
+  }
+`;
+
+export const Select = styled.select`
+  margin: 30px 0px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  outline: none;
+  width: 200px;
+  padding: 20px 30px;
+  font-size: 1.3rem;
+
+  position: relative;
+
+  option {
+    padding: 20px 40px;
+  }
+`;
+
 export const Side = styled.div`
   height: 100vh;
   width: 80px;

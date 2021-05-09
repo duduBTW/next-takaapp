@@ -4,7 +4,6 @@ import { cardPropsContact, useOrder } from "../_app";
 import { Button } from "../../styles/commissions";
 import { ContactContainer, Form, Input, Label } from "../../styles/contact";
 import useTranslation from "next-translate/useTranslation";
-
 export default function Contact() {
   const { setContactInfo, contactInfo } = useOrder();
 

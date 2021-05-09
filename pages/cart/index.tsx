@@ -4,12 +4,10 @@ import { AiOutlineClose } from "react-icons/ai";
 import { IconContext } from "react-icons/lib";
 import useTranslation from "next-translate/useTranslation";
 
-import { useTransition } from "react-spring";
 import TotalComp from "../../components/cart/TotalComp";
-import checkUserAuthentication from "../../components/shared/withAuth";
 
 function Cart() {
-  let { t } = useTranslation();
+  let { t, lang } = useTranslation();
   const { orders, removeOrder } = useOrder();
 
   return (
@@ -28,7 +26,7 @@ function Cart() {
           orders.map((item, index) => {
             if (item.info) {
               return (
-                <CartItem image={item.info.images[0].url}>
+                <CartItem lang={lang} image={item.info.images[0].url}>
                   <div className="icon" onClick={() => removeOrder(index)}>
                     <IconContext.Provider
                       value={{
@@ -51,7 +49,9 @@ function Cart() {
                   )}
 
                   {item.quantity && (
-                    <div className="description">Quantity: {item.quantity}</div>
+                    <div className="description">
+                      {t("cart:quantity")}: {item.quantity}
+                    </div>
                   )}
                   <div className="type">{item.info.title}</div>
                 </CartItem>

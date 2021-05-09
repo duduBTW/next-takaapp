@@ -9,12 +9,13 @@ import {
   Input,
   TextArea,
 } from "../../styles/commissions";
-import { CardItemProps } from "../../public/data";
+import { CardItemProps } from "../data";
 import { IconContext } from "react-icons/lib";
 import { FiArrowLeft } from "react-icons/fi";
 import { useRouter } from "next/router";
 import { animated, useTransition } from "react-spring";
 import ImageCard from "./ImageCard";
+import useTranslation from "next-translate/useTranslation";
 
 export default function Card({
   content,
@@ -30,6 +31,7 @@ export default function Card({
   const { price, desc, images, features, direction } = content;
   const [reset, setReset] = React.useState(true);
   const [step, setStep] = React.useState(0);
+  const { t } = useTranslation();
 
   const [quantity, setQuantity] = React.useState<string | number>(1);
   const [description, setDescription] = React.useState<string>("");
@@ -109,7 +111,7 @@ export default function Card({
                 }}
                 className="desc"
               >
-                Ordering dont require payment
+                {t("common:pay")}
               </div>
             </div>
           </CardSection>
@@ -117,7 +119,7 @@ export default function Card({
       case 1:
         return (
           <CardSection>
-            <div style={{ fontSize: "2rem" }}>Type the quantity</div>
+            <div style={{ fontSize: "2rem" }}>{t("commissions:quantity")}</div>
             <Input
               type="text"
               defaultValue="1"
@@ -134,7 +136,7 @@ export default function Card({
                 }}
                 className="button"
               >
-                back
+                {t("commissions:back")}
               </ButtonOutlined>
               <Button
                 style={{ flex: 3 }}
@@ -147,7 +149,7 @@ export default function Card({
                 }}
                 className="button"
               >
-                Continue
+                {t("commissions:next")}
               </Button>
             </ButtonsContainer>
           </CardSection>
@@ -155,13 +157,11 @@ export default function Card({
       case 2:
         return (
           <CardSection>
-            <div style={{ fontSize: "2rem" }}>
-              Type the description so I can know what you need
-            </div>
+            <div style={{ fontSize: "2rem" }}>{t("commissions:desc")}</div>
             <TextArea
               onChange={changeDescription}
               rows={10}
-              placeholder="ex: bla bla bla"
+              placeholder={t("commissions:descPlaceholder")}
               value={description}
               id=""
             />
@@ -175,14 +175,14 @@ export default function Card({
                 }}
                 className="button"
               >
-                back
+                {t("commissions:back")}
               </ButtonOutlined>
               <Button
                 style={{ flex: 3 }}
                 onClick={() => setStep(3)}
                 className="button"
               >
-                Continue
+                {t("commissions:next")}
               </Button>
             </ButtonsContainer>
           </CardSection>
@@ -191,7 +191,7 @@ export default function Card({
         return (
           <CardSection>
             <div style={{ fontSize: "4rem", textAlign: "center" }}>
-              Item added with success!
+              {t("commissions:success")}
             </div>
             <ButtonsContainer>
               <ButtonOutlined
@@ -199,14 +199,14 @@ export default function Card({
                 onClick={() => finish(quantity, description, "/commissions")}
                 className="button"
               >
-                go back to commisions
+                {t("commissions:backCom")}
               </ButtonOutlined>
               <Button
                 style={{ flex: 1 }}
                 onClick={() => finish(quantity, description, "/cart")}
                 className="button"
               >
-                see my card
+                {t("commissions:cart")}
               </Button>
             </ButtonsContainer>
           </CardSection>

@@ -31,7 +31,7 @@ export default function TotalComp() {
         }}
         className="desc"
       >
-        Ordering dont require payment
+        {t("common:pay")}
       </div>
     </Total>
   );

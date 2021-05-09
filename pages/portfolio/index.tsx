@@ -1,10 +1,19 @@
-import React from "react";
-import { Header, Content, Image } from "../../styles/portfolio";
+import React, { useEffect, useState } from "react";
+import {
+  Header,
+  Content,
+  Image,
+  Select,
+  SelectContainer,
+} from "../../styles/portfolio";
 
 // @ts-ignore
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { useRouter } from "next/router";
-import list from "../../public/data";
+import useData from "../../components/data";
+
+import { MdExpandMore } from "react-icons/md";
+
 export function shuffle(array: any) {
   var currentIndex = array.length,
     temporaryValue,
@@ -33,40 +42,56 @@ export interface portItemProps {
 
 function Portfolio() {
   const history = useRouter();
-  let listTemp: portItemProps[] = [
-    {
-      type: "",
-      url: "",
-      title: "",
-    },
-  ];
+  const [listTemp, setListTemp] = useState<portItemProps[]>([]);
+  const [filterSelected, setFilterSelected] = useState(history.query.filter);
+  const list = useData();
 
-  listTemp.pop();
-
-  list.map((item) =>
-    item.content.map((row) => {
-      if (!history.query.filter || history.query.filter === row.title) {
-        return row.images.forEach((image) => {
-          if (image.url)
-            listTemp.push({
-              url: image.url,
-              type: item.type,
-              title: row.title ? row.title : "",
-            });
-        });
-      }
-    })
-  );
-
-  const data = shuffle(listTemp);
+  useEffect(() => {
+    setListTemp([]);
+    list.map((item) =>
+      item.content.map((row) => {
+        if (!filterSelected || filterSelected === row.title) {
+          return row.images.forEach((image) => {
+            if (image.url)
+              setListTemp((s) => [
+                ...s,
+                {
+                  url: image.url,
+                  type: item.type,
+                  title: row.title ? row.title : "",
+                },
+              ]);
+          });
+        }
+      })
+    );
+  }, [filterSelected]);
 
   const redirecCom = (cat: string, title: string) => {
     history.push(`/commissions/${cat}/${title}`);
   };
+  const data = shuffle(listTemp);
 
   return (
     <div>
       <Header>PORTFOLIO</Header>
+      <SelectContainer>
+        <Select
+          value={filterSelected}
+          onChange={(e) => setFilterSelected(e.target.value)}
+        >
+          {list.map((item) =>
+            item.content.map((row) => (
+              <option key={row.title} value={row.title}>
+                {row.title}
+              </option>
+            ))
+          )}
+        </Select>
+        <div className="icon">
+          <MdExpandMore />
+        </div>
+      </SelectContainer>
       <Content>
         {data.length && (
           <ResponsiveMasonry

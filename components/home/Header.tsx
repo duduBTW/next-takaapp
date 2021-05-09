@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { useSpring, animated } from "react-spring";
 import { HeaderStyle, CardContainer, Card } from "../../styles/home";
-import list from "../../public/data";
+import useData from "../data";
 import { portItemProps } from "../../pages/portfolio";
 
 export function shuffle(array: any): portItemProps[] {
@@ -26,6 +26,7 @@ export function shuffle(array: any): portItemProps[] {
 }
 
 export default function Header() {
+  const list = useData();
   let listTemp: portItemProps[] = [
     {
       type: "",

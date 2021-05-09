@@ -1,5 +1,5 @@
 import React from "react";
-import { CardProps } from "../../public/data";
+import { CardProps } from "../data";
 import { SectionContainer } from "../../styles/commissions";
 import SectionCard from "./SectionCard";
 

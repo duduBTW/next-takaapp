@@ -20,7 +20,21 @@ export default function NavItem({
   const [{ y }, set] = useSpring(() => ({ y: 0 }));
 
   return (
-    <div style={{ padding: "20px 0px", background: "black", width: "100%" }}>
+    <div
+      onMouseEnter={() => {
+        set({ y: size });
+      }}
+      onMouseLeave={() => {
+        set({ y: 0 });
+      }}
+      onClick={() => history.push(link)}
+      style={{
+        padding: "20px 0px",
+        background: "black",
+        width: "100%",
+        cursor: "pointer",
+      }}
+    >
       <IconContext.Provider
         value={{
           color: "white",
@@ -35,15 +49,7 @@ export default function NavItem({
             position: "relative",
             background: "black",
             width: "100%",
-            cursor: "pointer",
           }}
-          onMouseEnter={() => {
-            set({ y: size });
-          }}
-          onMouseLeave={() => {
-            set({ y: 0 });
-          }}
-          onClick={() => history.push(link)}
         >
           {icon}
           <animated.div

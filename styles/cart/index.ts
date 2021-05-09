@@ -50,11 +50,12 @@ export const Total = styled.div`
   }
 `;
 
-interface CardPorp {
+interface CardItemPops {
+  lang: string;
   image: string;
 }
 
-export const CartItem = styled.div`
+export const CartItem = styled.div<CardItemPops>`
   margin: 0px;
   background: -webkit-gradient(
       linear,
@@ -64,7 +65,7 @@ export const CartItem = styled.div`
       color-stop(65%, rgba(0, 0, 0, 0.95)),
       color-stop(75%, rgba(0, 0, 0, 1))
     ),
-    url(${({ image }: CardPorp) => image}) no-repeat center center;
+    url(${({ image }: CardItemPops) => image}) no-repeat center center;
 
   background-size: cover;
   display: flex;
@@ -92,11 +93,11 @@ export const CartItem = styled.div`
 
     margin-top: 30px;
 
-    ::after {
+    ::before {
+
       margin: 10px;
       text-transform: uppercase;
       font-weight: 400;
-      content: "USD";
       font-size: 1.2rem;
     }
   }

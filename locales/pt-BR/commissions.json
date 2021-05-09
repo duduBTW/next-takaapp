@@ -1,0 +1,11 @@
+{
+  "info": "VER MAIS",
+  "quantity": "Digite a quantidade",
+  "desc": "Digite a descrição para eu saber o que você quer",
+  "descPlaceholder": "ex: Quero que você desenhe um...",
+  "success": "Item adicionado com sucesso!",
+  "cart": "ver o meu carrinho",
+  "backCom": "voltar para as comissões",
+  "next": "Próximo",
+  "back": "Voltar"
+}

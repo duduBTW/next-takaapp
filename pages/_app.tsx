@@ -14,7 +14,8 @@ import {
   useState,
 } from "react";
 
-import { CardItemProps } from "../public/data";
+import { CardItemProps } from "../components/data";
+import { useRouter } from "next/router";
 
 function getdefData() {
   var data = localStorage.getItem("orders");
@@ -56,6 +57,11 @@ export const useOrder = () => {
 
 function MyApp({ Component, pageProps }: AppProps) {
   const order = useProviderOrder();
+  const history = useRouter();
+
+  useEffect(() => {
+    if (history.asPath === "/") history.push("/home");
+  }, []);
 
   return (
     <OrderContext.Provider value={order}>

@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { config, useSpring, animated } from "react-spring";
 
 import Card from "../../../../components/commissions/Card";
-import list, { CardItemProps } from "../../../../public/data";
+import useData, { CardItemProps } from "../../../../components/data";
 import { Title } from "../../../../styles/commissions";
 import { useOrder } from "../../../_app";
 
-function ComItem(item: CardItemProps) {
+function ComItem() {
+  const list = useData();
+  const [item, setItem] = useState<CardItemProps | null>();
   const history = useRouter();
+  const { cat, title } = history.query;
+
+  useEffect(() => {
+    var items = list
+      .find((item1) => item1.type === cat)
+      ?.content.find((item2) => item2.title === title);
+
+    setItem(items);
+  }, []);
+
   const props = useSpring({
     from: { transform: "translate3d(100px,0px,0px)" },
     to: { transform: "translate3d(0px,0px,0px)" },
@@ -52,18 +64,6 @@ function ComItem(item: CardItemProps) {
       </>
     </>
   );
-}
-
-export async function getServerSideProps(context) {
-  const { cat, title } = context.query;
-
-  var items = list
-    .find((item1) => item1.type === cat)
-    ?.content.find((item2) => item2.title === title);
-
-  return {
-    props: items, // will be passed to the page component as props
-  };
 }
 
 export default ComItem;

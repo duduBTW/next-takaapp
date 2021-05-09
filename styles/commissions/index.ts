@@ -31,8 +31,13 @@ export const CardItem = styled.div`
   position: relative;
   border-bottom: 1px solid black;
   border-top: 1px solid black;
-  height: 60vh;
+  height: 80vh;
   transition: all 0.5s ease;
+  overflow: hidden;
+
+  @media (max-width: 800px) {
+    flex-direction: column-reverse;
+  }
 
   @media (min-width: 1300px) {
     :hover {
@@ -50,6 +55,14 @@ export const CardItem = styled.div`
     }
   }
 
+  @media (max-width: 800px) {
+    :hover {
+      .img {
+        transform: translateX(0%);
+      }
+    }
+  }
+
   @media (max-width: 1300px) {
     .hide {
       display: none;
@@ -61,12 +74,22 @@ export const CardItem = styled.div`
     flex: 3;
     width: 40%;
     margin: 50px 0px;
+
+    @media (max-width: 800px) {
+      width: 100%;
+      margin: 50px 0px 0px 0px;
+      padding-top: 50px;
+      border-top: 1px solid black;
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+    }
   }
 
   .left {
     @media (max-width: 1300px) {
       flex: 3;
     }
+    border-top: 1px solid white;
     text-align: center;
     flex: 4;
     height: 100%;
@@ -92,8 +115,9 @@ export const CardItem = styled.div`
     /* justify-content: flex-start; */
     /* align-items: center; */
     .title {
-      font-size: clamp(1.6rem, 2.5vw, 3.5rem);
+      font-size: clamp(2.5rem, 3vw, 5rem);
       padding: 0px 20px;
+      text-align: center;
       margin: 0px;
       text-transform: uppercase;
       letter-spacing: 16px;
@@ -101,7 +125,31 @@ export const CardItem = styled.div`
     }
 
     .price {
-      font-size: 2.4rem;
+      /* margin-top: 3vw; */
+      font-size: clamp(2.5rem, 3.5vw, 3.6rem);
+
+      font-weight: 600;
+      letter-spacing: 3px;
+
+      ::before {
+        margin-left: 20px;
+        text-transform: uppercase;
+        font-weight: 400;
+        content: "basic";
+        font-size: 0.7rem;
+        margin-right: 10px;
+      }
+
+      ::after {
+        margin: 10px;
+        text-transform: uppercase;
+        font-weight: 400;
+        content: "USD";
+        font-size: 1.7rem;
+      }
+
+      color: white;
+      /* margin-bottom: 4.5vw; */
     }
 
     ul {
@@ -130,8 +178,14 @@ export const CardSection = styled.div`
   justify-content: space-evenly;
   z-index: -1;
   min-width: 600px;
+  max-width: 80vw;
+
+  @media (max-width: 800px) {
+    align-items: flex-start;
+  }
 
   ul {
+    background: rgba(0, 0, 0, 0.75);
     max-height: 300px;
     padding: 0px;
     width: 100%;
@@ -188,6 +242,8 @@ export const TextArea = styled.textarea`
   padding: 5%;
   width: 90%;
 
+  width: 100%;
+
   outline: none;
   text-align: start;
 `;
@@ -201,11 +257,17 @@ export const Title = styled.div`
   display: flex;
   flex-direction: column;
 
+  @media (max-width: 800px) {
+    max-width: 60px;
+    display: none;
+    line-height: 40px;
+  }
+
   text-align: center;
   align-items: center;
   justify-content: center;
 
-  font-size: clamp(2rem, 2vw, 3rem);
+  font-size: clamp(1.5rem, 2vw, 3rem);
 
   font-weight: bold;
 
@@ -241,27 +303,31 @@ export const Content = styled.section`
     }
 
     display: flex;
+    @media (max-width: 800px) {
+      flex-direction: column-reverse;
+    }
     /* flex-direction: column; */
     /* margin-left: 10vw; */
 
     .body {
+      @media (max-width: 800px) {
+        padding: 30px;
+        max-width: 70vw;
+      }
       max-height: 100vh;
       flex-grow: 5;
       background: black;
-      /* 
-        @media (min-width: 1300px) {
-          transform: translateX(0%);
-        } */
-
-      max-width: 800px;
+      max-width: 70vw;
 
       padding: 5% 100px 0px 5vw;
 
       display: flex;
-      align-items: flex-start;
       flex-direction: column;
+      align-items: flex-start;
 
       .price {
+        max-width: 100%;
+        background: rgba(0, 0, 0, 0.75);
         /* margin-top: 3vw; */
         font-size: clamp(2.5rem, 3.5vw, 3.6rem);
 
@@ -289,13 +355,25 @@ export const Content = styled.section`
         /* margin-bottom: 4.5vw; */
       }
 
+      .button {
+        @media (max-width: 800px) {
+          max-width: 300px;
+        }
+      }
+
       .desc {
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.75);
         font-size: clamp(0.9rem, 1vw, 1.2rem);
         color: white;
         max-height: 300px;
         overflow-y: hidden;
         margin: 1vw 0px;
         line-height: 33px;
+
+        @media (max-width: 800px) {
+          max-width: 50vw;
+        }
       }
     }
   }
@@ -310,7 +388,12 @@ export const Image = styled(animated.div)`
   flex-grow: 5;
 
   @media (max-width: 1300px) {
+    z-index: -1;
     /* transform: translateX(-20%); */
+  }
+
+  @media (max-width: 800px) {
+    margin: 0px;
   }
 
   /* min-width: 350px; */
@@ -532,6 +615,49 @@ export const Button = styled.button`
     transition: transform 0.4s;
     content: "";
     background: white;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    transform: translate3D(6px, 6px, 0px) translateZ(-1px);
+  }
+`;
+
+export const ButtonReverse = styled.button`
+  text-transform: uppercase;
+  padding: 20px 20px;
+  color: white;
+  background: none;
+  border: 3px solid green;
+  margin: 20px 0px;
+  cursor: pointer;
+
+  width: 100%;
+
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+
+  position: relative;
+
+  transition: transform 0.4s;
+  transform-style: preserve-3d;
+
+  :hover {
+    transition: all 0.4s;
+    border-color: black;
+
+    ::after {
+      transform: translate3D(0px, 0px, 0px);
+    }
+  }
+
+  ::after {
+    position: absolute;
+    z-index: -10;
+    transition: transform 0.4s;
+    content: "";
+    background: black;
     top: 0px;
     bottom: 0px;
     left: 0px;

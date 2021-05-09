@@ -1,11 +1,10 @@
 import React from "react";
 
 import Section from "../../components/commissions/Section";
-import list from "../../public/data";
-
-import checkUserAuthentication from "../../components/shared/withAuth";
+import useData from "../../components/data";
 
 const Commissions = () => {
+  const list = useData();
   return (
     <div>
       {list.map((listItem, index) => (
@@ -15,4 +14,4 @@ const Commissions = () => {
   );
 };
 
-export default checkUserAuthentication(Commissions);
+export default Commissions;

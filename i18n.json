@@ -5,7 +5,9 @@
     "*": ["common"],
     "/": ["home", "example"],
     "/cart": ["cart"],
-    "/commissions/[cat]/[title]": ["cart"],
-    "/contact": ["contact"]
+    "/commissions/[cat]/[title]": ["commissions"],
+    "/commissions": ["commissions"],
+    "/contact": ["contact"],
+    "/changeLang": ["common"]
   }
 }

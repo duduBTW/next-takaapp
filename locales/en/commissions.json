@@ -1,0 +1,11 @@
+{
+  "info": "SEE MORE",
+  "quantity": "Type the quantity",
+  "desc": "Type the description so I can know what you need",
+  "descPlaceholder": "ex: I want you to draw a...",
+  "success": "Item added with success!",
+  "cart": "see my card",
+  "backCom": "go back to commisions",
+  "next": "Next",
+  "back": "Back"
+}

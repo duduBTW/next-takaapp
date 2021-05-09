@@ -7,44 +7,60 @@ import {
   AiFillSnippets,
   AiFillLayout,
 } from "react-icons/ai";
+import { MdLanguage } from "react-icons/md";
 
 import { NavBarContainer, Title, Icons } from "../../styles/layout";
-
+import { FaFileContract } from "react-icons/fa";
 import { useRouter } from "next/router";
 import NavItem, { NavItemProps } from "./NavItem";
+import useTranslation from "next-translate/useTranslation";
 
 export default function Navbar() {
   const history = useRouter();
+  let { lang } = useTranslation();
+
   const listIcons: Array<NavItemProps> = [
     {
       icon: <AiFillHome />,
       size: 180,
-      label: "home",
-      link: "/",
+      label: lang === "pt-BR" ? "Inicio" : "Home",
+      link: "/home",
     },
     {
       icon: <AiOutlineFileImage />,
-      size: 200,
-      label: "portfolio",
+      size: 220,
+      label: lang === "pt-BR" ? "Portfólio" : "Portfolio",
       link: "/portfolio",
     },
     {
       icon: <AiFillSnippets />,
-      size: 240,
-      label: "commissions",
+      size: 260,
+      label: lang === "pt-BR" ? "Comissão" : "commissions",
       link: "/commissions",
     },
     {
       icon: <AiFillShopping />,
-      size: 160,
-      label: "cart",
+      size: 200,
+      label: lang === "pt-BR" ? "Carrinho" : "My cart",
       link: "/cart",
     },
     {
       icon: <AiFillLayout />,
-      size: 160,
-      label: "dev",
+      size: 260,
+      label: lang === "pt-BR" ? "Desenvolvedor" : "Developer",
       link: "/dev",
+    },
+    {
+      icon: <MdLanguage />,
+      size: 230,
+      label: lang === "pt-BR" ? "Idioma" : "Language",
+      link: "/language",
+    },
+    {
+      icon: <FaFileContract />,
+      size: 230,
+      label: lang === "pt-BR" ? "Contrato" : "Contract",
+      link: "/contract",
     },
   ];
 

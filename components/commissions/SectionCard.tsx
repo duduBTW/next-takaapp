@@ -2,8 +2,9 @@ import React from "react";
 
 import { useRouter } from "next/router";
 import { useTransition, animated } from "react-spring";
-import { CardItemProps } from "../../public/data";
+import { CardItemProps } from "../data";
 import { Button, CardItem, ImageCard } from "../../styles/commissions";
+import useTranslation from "next-translate/useTranslation";
 
 export default function SectionCard({
   item,
@@ -13,6 +14,7 @@ export default function SectionCard({
   cat: string;
 }) {
   const history = useRouter();
+  let { t } = useTranslation();
 
   const transitions = useTransition(item.features, (item) => item, {
     from: { transform: "translate3d(-100px,0px,0)", opacity: 0 },
@@ -31,7 +33,7 @@ export default function SectionCard({
           onClick={() => history.push(`/commissions/${cat}/${item.title}`)}
           style={{ width: "80%" }}
         >
-          SEE MORE
+          {t("commissions:info")}
         </Button>
       </div>
       <ImageCard
