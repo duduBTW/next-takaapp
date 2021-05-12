@@ -7,7 +7,7 @@ export default function ContractPage() {
   const [accepted, setAccepted] = useState(false);
   const [data, setData] = useState();
   useEffect(() => {
-    axios.get("http://localhost:3000/api/contract").then((res) => {
+    axios.get("/api/contract").then((res) => {
       setData(res.data);
     });
   }, []);
